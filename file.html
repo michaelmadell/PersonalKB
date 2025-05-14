@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Folder Tree Example</title>
+<style>
+    body { font-family: sans-serif; margin: 10px; }
+    .folder-tree ul { list-style-type: none; padding-left: 20px; }
+    .folder-tree li { padding: 3px 0; }
+    .folder-tree .folder > .folder-name { cursor: pointer; font-weight: bold; user-select: none; }
+    .folder-tree .folder > .folder-name::before { content: '\25B6 '; /* Right-pointing triangle */ margin-right: 5px; display: inline-block; }
+    .folder-tree .folder.expanded > .folder-name::before { content: '\25BC '; /* Down-pointing triangle */ }
+    .folder-tree .folder > ul { display: none; }
+    .folder-tree .folder.expanded > ul { display: block; }
+    .folder-tree .file::before { content: '\1F4C4 '; /* Page icon */ margin-right: 5px; }
+</style>
+</head>
+<body>
+
+<h2>Example USB Folder Structure:</h2>
+<div class="folder-tree">
+    <ul>
+        <li class="folder">
+            <span class="folder-name">My USB Drive</span>
+            <ul>
+                <li class="folder">
+                    <span class="folder-name">Documents</span>
+                    <ul>
+                        <li class="file"><span>Annual Report 2024.docx</span></li>
+                        <li class="file"><span>Presentation_Slides.pptx</span></li>
+                    </ul>
+                </li>
+                <li class="folder">
+                    <span class="folder-name">Photos</span>
+                    <ul>
+                        <li class="folder">
+                            <span class="folder-name">Vacation 2023</span>
+                            <ul>
+                                <li class="file"><span>IMG_001.jpg</span></li>
+                                <li class="file"><span>IMG_002.jpg</span></li>
+                            </ul>
+                        </li>
+                        <li class="file"><span>Family_Reunion.png</span></li>
+                    </ul>
+                </li>
+                <li class="folder">
+                    <span class="folder-name">Software</span>
+                    <ul>
+                        <li class="file"><span>installer_v1.exe</span></li>
+                        <li class="file"><span>license.txt</span></li>
+                    </ul>
+                </li>
+                <li class="file"><span>backup_instructions.txt</span></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<script>
+    document.querySelectorAll('.folder-tree .folder > .folder-name').forEach(folderSpan => {
+        folderSpan.addEventListener('click', function(event) {
+            this.parentElement.classList.toggle('expanded');
+            event.preventDefault(); // Good practice
+        });
+    });
+</script>
+
+</body>
+</html>
